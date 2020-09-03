@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Atmel Studio Solution File, Format Version 11.00
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "slim-crypt-library", "slim-crypt-library\slim-crypt-library.cproj", "{DCE6C7E3-EE26-4D79-826B-08594B9AD897}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "slim-crypt-runner", "slim-crypt-runner\slim-crypt-runner.cproj", "{3A78EF7B-3D95-4A1C-B7F4-B0B1EE36F409}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Debug|AVR.ActiveCfg = Debug|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Debug|AVR.Build.0 = Debug|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.ActiveCfg = Release|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.Build.0 = Release|AVR
+		{3A78EF7B-3D95-4A1C-B7F4-B0B1EE36F409}.Debug|AVR.ActiveCfg = Debug|AVR
+		{3A78EF7B-3D95-4A1C-B7F4-B0B1EE36F409}.Debug|AVR.Build.0 = Debug|AVR
+		{3A78EF7B-3D95-4A1C-B7F4-B0B1EE36F409}.Release|AVR.ActiveCfg = Release|AVR
+		{3A78EF7B-3D95-4A1C-B7F4-B0B1EE36F409}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
