@@ -9,6 +9,8 @@ Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "AES-algorithm", "AES-algori
 EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "DES-algorithm", "DES-algorithm\DES-algorithm.cproj", "{91D9C217-2BAC-4CBF-99FE-7008B4F8B1A8}"
 EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "TEA-algorithm", "TEA-algorithm\TEA-algorithm.cproj", "{2CD32EE8-7E3F-4EBC-9D2A-CD74303BFB50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -27,6 +29,10 @@ Global
 		{91D9C217-2BAC-4CBF-99FE-7008B4F8B1A8}.Debug|AVR.Build.0 = Debug|AVR
 		{91D9C217-2BAC-4CBF-99FE-7008B4F8B1A8}.Release|AVR.ActiveCfg = Release|AVR
 		{91D9C217-2BAC-4CBF-99FE-7008B4F8B1A8}.Release|AVR.Build.0 = Release|AVR
+		{2CD32EE8-7E3F-4EBC-9D2A-CD74303BFB50}.Debug|AVR.ActiveCfg = Debug|AVR
+		{2CD32EE8-7E3F-4EBC-9D2A-CD74303BFB50}.Debug|AVR.Build.0 = Debug|AVR
+		{2CD32EE8-7E3F-4EBC-9D2A-CD74303BFB50}.Release|AVR.ActiveCfg = Release|AVR
+		{2CD32EE8-7E3F-4EBC-9D2A-CD74303BFB50}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
