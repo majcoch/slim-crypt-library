@@ -9,7 +9,7 @@
 #include "AES/aes.h"
 
 int main(void) {
-    /* Replace with your application code */
+    /* AES encrypting and decrypting example */
 	uint8_t message[] = "This is a message we will encrypt with AES!";
 	aes_128_context_t aes = { { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 }, { 0 } };
 

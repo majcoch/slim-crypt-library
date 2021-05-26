@@ -9,7 +9,6 @@
 #include "../../data/aes_data.h"
 #include "../comm/aes_comm.h"
 
-
 void aes_sub_bytes(uint8_t* state) {
 	for (uint8_t i = 0; i < 16; i++)
 	state[i] = s_box[state[i]];
