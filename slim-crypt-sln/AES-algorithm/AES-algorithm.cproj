@@ -110,7 +110,10 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="aes.h">
+    <Compile Include="AES\aes.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="AES\data\aes_data.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="AES\data\aes_data.h">
