@@ -10,6 +10,6 @@
 #define BLOWFISH_H_
 
 #include "impl/enc/blowfish_enc.h"
-
+#include "impl/dec/blowfish_dec.h"
 
 #endif /* BLOWFISH_H_ */

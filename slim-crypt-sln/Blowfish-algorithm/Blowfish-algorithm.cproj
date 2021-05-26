@@ -133,6 +133,12 @@
     <Compile Include="Blowfish\impl\comm\blowfish_common.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Blowfish\impl\dec\blowfish_dec.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Blowfish\impl\dec\blowfish_dec.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Blowfish\impl\enc\blowfish_enc.c">
       <SubType>compile</SubType>
     </Compile>

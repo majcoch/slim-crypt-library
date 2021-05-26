@@ -33,7 +33,8 @@ int main(void) {
 	//tea_decrypt(&tea, message, 8);
 	
 	/* Blowfish encrypting and decrypting example */
-	blowfish_encrypt(message, 8);
+	//blowfish_encrypt(message, 8);
+	//blowfish_decrypt(message, 8);
 	
     while (1) {}
 }
