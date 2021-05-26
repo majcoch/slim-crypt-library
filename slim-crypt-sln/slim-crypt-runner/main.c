@@ -8,7 +8,8 @@
 #include <avr/io.h>
 //#include "AES/aes.h"
 //#include "DES/des.h"
-#include "TEA/tea.h"
+//#include "TEA/tea.h"
+#include "Blowfish/blowfish.h"
 
 int main(void) {
    
@@ -27,9 +28,13 @@ int main(void) {
 	//des_decrypt(&des, message, 8);
 	
 	/* TEA encrypting and decrypting example */
-	tea_context_t tea = { {0x12, 0x65, 0x22, 0x55} };
-	tea_encrypt(&tea, message, 8);
-	tea_decrypt(&tea, message, 8);
+	//tea_context_t tea = { {0x12, 0x65, 0x22, 0x55} };
+	//tea_encrypt(&tea, message, 8);
+	//tea_decrypt(&tea, message, 8);
+	
+	/* Blowfish encrypting and decrypting example */
+	//blowfish_encrypt(message, 8);
+	//blowfish_decrypt(message, 8);
 	
     while (1) {}
 }
