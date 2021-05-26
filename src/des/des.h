@@ -9,6 +9,10 @@
 #ifndef DES_H_
 #define DES_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stddef.h>
 
@@ -28,5 +32,9 @@ void des_encrypt(const des_context_t* context, uint8_t* data, const size_t len);
 uint64_t des_decrypt_block(const des_context_t* context, const uint64_t block);
 
 void des_decrypt(const des_context_t* context, uint8_t* data, const size_t len);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* DES_H_ */

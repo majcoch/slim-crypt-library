@@ -9,6 +9,10 @@
 #ifndef BLOWFISH_H_
 #define BLOWFISH_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stddef.h>
 
@@ -19,5 +23,9 @@ void blowfish_encrypt(uint8_t* data, const size_t len);
 uint64_t blowfish_decrypt_block(uint64_t block);
 
 void blowfish_decrypt(uint8_t* data, const size_t len);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* BLOWFISH_H_ */

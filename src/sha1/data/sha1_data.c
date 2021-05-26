@@ -6,7 +6,14 @@
  */ 
 #include "sha1_data.h"
 
-const uint32_t sha1_h[5] = {
+#ifdef __AVR__ 
+	#include <avr/pgmspace.h>
+	#define FLASH_MEM PROGMEM
+#else
+	#define FLASH_MEM
+#endif // __AVR__ 
+
+const uint32_t sha1_h[5] FLASH_MEM  = {
 	0x67452301,
 	0xEFCDAB89,
 	0x98BADCFE,

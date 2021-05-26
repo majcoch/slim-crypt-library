@@ -6,9 +6,16 @@
  */ 
 #include "des_data.h"
 
+#ifdef __AVR__ 
+	#include <avr/pgmspace.h>
+	#define FLASH_MEM PROGMEM
+#else
+	#define FLASH_MEM
+#endif // __AVR__ 
+
 // Key generation
 
-const uint8_t des_pc_1[56] = {
+const uint8_t des_pc_1[56] FLASH_MEM = {
 	57,49,41,33,25,17,9,
 	1,58,50,42,34,26,18,
 	10,2,59,51,43,35,27,
@@ -19,7 +26,7 @@ const uint8_t des_pc_1[56] = {
 	21,13,5,28,20,12,4
 };
 
-const uint8_t des_pc_2[48] = {
+const uint8_t des_pc_2[48] FLASH_MEM = {
 	14, 17, 11, 24,  1,  5,
 	3, 28, 15,  6, 21, 10,
 	23, 19, 12,  4, 26,  8,
@@ -30,13 +37,13 @@ const uint8_t des_pc_2[48] = {
 	46, 42, 50, 36, 29, 32
 };
 
-const uint8_t des_key_shift[16] = {
+const uint8_t des_key_shift[16] FLASH_MEM = {
 	1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1
 };
 
 // Block encryption
 
-const uint8_t des_ip[64] = {
+const uint8_t des_ip[64] FLASH_MEM = {
 	58,50,42,34,26,18,10,2,
 	60,52,44,36,28,20,12,4,
 	62,54,46,38,30,22,14,6,
@@ -47,7 +54,7 @@ const uint8_t des_ip[64] = {
 	63,55,47,39,31,23,15,7
 };
 
-const uint8_t des_expand_table[48] = {
+const uint8_t des_expand_table[48] FLASH_MEM = {
 	32,  1,  2,  3,  4,  5,
 	4,  5,  6,  7,  8,  9,
 	8,  9, 10, 11, 12, 13,
@@ -58,7 +65,7 @@ const uint8_t des_expand_table[48] = {
 	28, 29, 30, 31, 32,  1
 };
 
-const uint8_t des_s_box[8][4][16] = {
+const uint8_t des_s_box[8][4][16] FLASH_MEM = {
 	// S1
 	{
 		14,  4, 13,  1,  2, 15, 11,  8,  3, 10,  6, 12,  5,  9,  0,  7,
@@ -124,7 +131,7 @@ const uint8_t des_s_box[8][4][16] = {
 	}
 };
 
-const uint8_t des_p[32] = {
+const uint8_t des_p[32] FLASH_MEM = {
 	16,  7, 20, 21,
 	29, 12, 28, 17,
 	1, 15, 23, 26,
@@ -135,7 +142,7 @@ const uint8_t des_p[32] = {
 	22, 11,  4, 25
 };
 
-const uint8_t des_inv_ip[64] = {
+const uint8_t des_inv_ip[64] FLASH_MEM = {
 	40, 8, 48, 16, 56, 24, 64, 32,
 	39, 7, 47, 15, 55, 23, 63, 31,
 	38, 6, 46, 14, 54, 22, 62, 30,

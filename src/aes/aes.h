@@ -9,6 +9,10 @@
 #ifndef AES_H_
 #define AES_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stddef.h>
 
@@ -29,5 +33,10 @@ void aes_128_encrypt(const aes_128_context_t* context, uint8_t* data, const size
 void aes_128_decrypt_block(const aes_128_context_t* context, uint8_t* block);
 
 void aes_128_decrypt(const aes_128_context_t* context, uint8_t* data, const size_t len);
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* AES_H_ */

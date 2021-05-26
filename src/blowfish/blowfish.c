@@ -4,10 +4,6 @@
  * Created: 26.05.2021 19:25:46
  *  Author: Micha³ Granda
  */ 
-#ifdef __cplusplus
-extern "C" {
-#endif
-	
 #include "blowfish.h"
 #include "data/blowfish_data.h"
 
@@ -90,7 +86,3 @@ void blowfish_decrypt(uint8_t* data, const size_t len) {
 		blowfish_destroy_block(&data[i], &block);
 	}
 }
-
-#ifdef __cplusplus
-}
-#endif

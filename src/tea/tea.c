@@ -4,10 +4,6 @@
  * Created: 26.05.2021 19:39:59
  *  Author: Micha³ Granda
  */ 
-#ifdef __cplusplus
-extern "C" {
-#endif
-	
 #include "tea.h"
 
 #define MAGIC_CONSTANT	(uint32_t)(0x9E3779B9)
@@ -78,7 +74,3 @@ void tea_decrypt(const tea_context_t* context, uint8_t* data, const size_t len) 
 		destroy_block(&data[i], &block);
 	}
 }
-
-#ifdef __cplusplus
-}
-#endif

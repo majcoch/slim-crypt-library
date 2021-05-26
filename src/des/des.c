@@ -4,10 +4,6 @@
  * Created: 26.05.2021 19:30:58
  *  Author: Micha³ Granda
  */ 
-#ifdef __cplusplus
-extern "C" {
-#endif
-	
 #include "des.h"
 
 #include "data/des_data.h"
@@ -155,7 +151,3 @@ void des_decrypt(const des_context_t* context, uint8_t* data, const size_t len) 
 		des_destroy_block(&data[i], &block);
 	}
 }
-
-#ifdef __cplusplus
-}
-#endif

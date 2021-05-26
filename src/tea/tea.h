@@ -9,6 +9,10 @@
 #ifndef TEA_H_
 #define TEA_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stddef.h>
 
@@ -24,5 +28,8 @@ uint64_t tea_decrypt_block(const tea_context_t* context, uint64_t block);
 
 void tea_decrypt(const tea_context_t* context, uint8_t* data, const size_t len);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* TEA_H_ */
