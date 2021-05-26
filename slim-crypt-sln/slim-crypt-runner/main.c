@@ -6,14 +6,20 @@
  */ 
 
 #include <avr/io.h>
+
+#include "SHA1/sha1.h"
 //#include "AES/aes.h"
 //#include "DES/des.h"
 //#include "TEA/tea.h"
-#include "Blowfish/blowfish.h"
+//#include "Blowfish/blowfish.h"
 
 int main(void) {
    
 	uint8_t message[] = "This is a message we will encrypt with AES!";
+	
+	/* SH-1 hash example */
+	uint32_t hash[5] = {0};
+	sha1_hash(message, 32, hash);
 	
 	/* AES encrypting and decrypting example */
 	//aes_128_context_t aes = { { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 }, { 0 } };

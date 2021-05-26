@@ -4,43 +4,32 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>7.0</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
-    <ProjectGuid>dce6c7e3-ee26-4d79-826b-08594b9ad897</ProjectGuid>
+    <ProjectGuid>{1439de21-df46-4bf1-bfd9-3a798cfc2a09}</ProjectGuid>
     <avrdevice>ATmega328P</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
-    <OutputType>Executable</OutputType>
+    <OutputType>StaticLibrary</OutputType>
     <Language>C</Language>
-    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
-    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputFileName>lib$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.a</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>slim-crypt-runner</AssemblyName>
-    <Name>slim-crypt-runner</Name>
-    <RootNamespace>slim-crypt-runner</RootNamespace>
+    <AvrGccProjectExtensions>
+    </AvrGccProjectExtensions>
+    <AssemblyName>SHA1-algorithm</AssemblyName>
+    <Name>SHA1-algorithm</Name>
+    <RootNamespace>SHA1-algorithm</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <RamSnippetAddress />
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <OverrideVtorValue />
     <BootSegment>2</BootSegment>
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>0</eraseonlaunchrule>
     <EraseKey />
-    <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
-    <avrtoolserialnumber />
-    <avrdeviceexpectedsignature>0x1E950F</avrdeviceexpectedsignature>
-    <com_atmel_avrdbg_tool_simulator>
-      <ToolOptions xmlns="">
-        <InterfaceProperties>
-        </InterfaceProperties>
-      </ToolOptions>
-      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
-      <ToolNumber xmlns="">
-      </ToolNumber>
-      <ToolName xmlns="">Simulator</ToolName>
-    </com_atmel_avrdbg_tool_simulator>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -99,11 +88,6 @@
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
       <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
-      <Value>../../AES-algorithm</Value>
-      <Value>../../DES-algorithm</Value>
-      <Value>../../TEA-algorithm</Value>
-      <Value>../../Blowfish-algorithm</Value>
-      <Value>../../SHA1-algorithm</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcc.compiler.optimization.level>
@@ -126,36 +110,26 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="main.c">
-      <SubType>compile</SubType>
-    </Compile>
+    <Folder Include="SHA1" />
+    <Folder Include="SHA1\data" />
+    <Folder Include="SHA1\impl" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AES-algorithm\AES-algorithm.cproj">
-      <Name>AES-algorithm</Name>
-      <Project>{0515b9a3-a9e2-4035-b17f-ce4921c8cd49}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Blowfish-algorithm\Blowfish-algorithm.cproj">
-      <Name>Blowfish-algorithm</Name>
-      <Project>{13ad1b9f-1ed8-4c49-9156-330f9a9fa91b}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\DES-algorithm\DES-algorithm.cproj">
-      <Name>DES-algorithm</Name>
-      <Project>{91d9c217-2bac-4cbf-99fe-7008b4f8b1a8}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\SHA1-algorithm\SHA1-algorithm.cproj">
-      <Name>SHA1-algorithm</Name>
-      <Project>{1439de21-df46-4bf1-bfd9-3a798cfc2a09}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\TEA-algorithm\TEA-algorithm.cproj">
-      <Name>TEA-algorithm</Name>
-      <Project>{2cd32ee8-7e3f-4ebc-9d2a-cd74303bfb50}</Project>
-      <Private>True</Private>
-    </ProjectReference>
+    <Compile Include="SHA1\data\sha1_data.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SHA1\data\sha1_data.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SHA1\impl\sha1_hash.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SHA1\impl\sha1_hash.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SHA1\sha1.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
