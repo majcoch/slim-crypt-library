@@ -159,7 +159,7 @@ void aes_inv_mix_columns(uint8_t* state) {
 }
 
 
-void aes_init(aes_128_context_t* aes) {
+void aes_128_init(aes_128_context_t* aes) {
 	aes_expand_key(aes->user_key, aes->expanded_key);
 }
 
