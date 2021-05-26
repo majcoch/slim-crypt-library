@@ -9,8 +9,25 @@
 #ifndef AES_H_
 #define AES_H_
 
-#include "impl/init/aes_init.h"
-#include "impl/enc/aes_enc.h"
-#include "impl/dec/aes_dec.h"
+#include <stdint.h>
+#include <stddef.h>
+
+#define AES_USER_KEY_LEN	16
+#define AES_EXPA_KEY_LEN	176
+
+typedef struct {
+	uint8_t user_key[AES_USER_KEY_LEN];
+	uint8_t expanded_key[AES_EXPA_KEY_LEN];
+}aes_128_context_t;
+
+void aes_128_init(aes_128_context_t* aes);
+
+void aes_128_encrypt_block(const aes_128_context_t* context, uint8_t* block);
+
+void aes_128_encrypt(const aes_128_context_t* context, uint8_t* data, const size_t len);
+
+void aes_128_decrypt_block(const aes_128_context_t* context, uint8_t* block);
+
+void aes_128_decrypt(const aes_128_context_t* context, uint8_t* data, const size_t len);
 
 #endif /* AES_H_ */

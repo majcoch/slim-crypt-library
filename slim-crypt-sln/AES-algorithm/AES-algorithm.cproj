@@ -110,6 +110,9 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AES\aes.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="AES\aes.h">
       <SubType>compile</SubType>
     </Compile>
@@ -119,42 +122,10 @@
     <Compile Include="AES\data\aes_data.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="AES\impl\comm\aes_comm.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="AES\impl\comm\aes_comm.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="AES\impl\context.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="AES\impl\dec\aes_dec.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="AES\impl\dec\aes_dec.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="AES\impl\enc\aes_enc.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="AES\impl\enc\aes_enc.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="AES\impl\init\aes_init.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="AES\impl\init\aes_init.h">
-      <SubType>compile</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AES" />
     <Folder Include="AES\data" />
-    <Folder Include="AES\impl" />
-    <Folder Include="AES\impl\enc" />
-    <Folder Include="AES\impl\dec" />
-    <Folder Include="AES\impl\init" />
-    <Folder Include="AES\impl\comm" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

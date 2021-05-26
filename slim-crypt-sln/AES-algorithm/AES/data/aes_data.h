@@ -11,10 +11,10 @@
 
 #include <stdint.h>
 
-extern const uint8_t s_box[256];
+extern const uint8_t aes_s_box[256];
 
-extern const uint8_t inv_s_box[256];
+extern const uint8_t aes_inv_s_box[256];
 
-extern const uint8_t rcon[11];
+extern const uint8_t aes_rcon[11];
 
 #endif /* AES_DATA_H_ */
