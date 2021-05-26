@@ -11,6 +11,8 @@
 
 #include <stdint.h>
 
+#define AES_128_ROUNDS_CNT	9
+
 void aes_add_round_key(uint8_t* state, const uint8_t* key);
 
 uint8_t aes_galois_multiply(uint8_t a, uint8_t b);
