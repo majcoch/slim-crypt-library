@@ -20,6 +20,7 @@ int main(void) {
 	
 	des_context_t des = {0, {0}};
 	des_init(&des);
+	des_encrypt(&des, message, 8);
 	
     while (1) {}
 }

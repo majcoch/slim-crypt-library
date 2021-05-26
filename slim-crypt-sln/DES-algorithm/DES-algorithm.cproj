@@ -134,7 +134,16 @@
     <Compile Include="DES\impl\comm\des_common.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="DES\impl\dec\des_dec.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="DES\impl\des_context.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DES\impl\enc\des_enc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DES\impl\enc\des_enc.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="DES\impl\init\des_init.c">
