@@ -110,22 +110,25 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AES\aes.c">
+    <Compile Include="..\..\src\aes\aes.c">
       <SubType>compile</SubType>
+      <Link>aes.c</Link>
     </Compile>
-    <Compile Include="AES\aes.h">
+    <Compile Include="..\..\src\aes\aes.h">
       <SubType>compile</SubType>
+      <Link>aes.h</Link>
     </Compile>
-    <Compile Include="AES\data\aes_data.c">
+    <Compile Include="..\..\src\aes\data\aes_data.c">
       <SubType>compile</SubType>
+      <Link>data\aes_data.c</Link>
     </Compile>
-    <Compile Include="AES\data\aes_data.h">
+    <Compile Include="..\..\src\aes\data\aes_data.h">
       <SubType>compile</SubType>
+      <Link>data\aes_data.h</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AES" />
-    <Folder Include="AES\data" />
+    <Folder Include="data" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

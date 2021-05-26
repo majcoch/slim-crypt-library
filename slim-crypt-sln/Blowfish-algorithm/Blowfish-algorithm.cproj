@@ -110,22 +110,25 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Blowfish" />
-    <Folder Include="Blowfish\data" />
+    <Compile Include="..\..\src\blowfish\blowfish.c">
+      <SubType>compile</SubType>
+      <Link>blowfish.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\blowfish\blowfish.h">
+      <SubType>compile</SubType>
+      <Link>blowfish.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\blowfish\data\blowfish_data.c">
+      <SubType>compile</SubType>
+      <Link>data\blowfish_data.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\blowfish\data\blowfish_data.h">
+      <SubType>compile</SubType>
+      <Link>data\blowfish_data.h</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blowfish\blowfish.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Blowfish\blowfish.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Blowfish\data\blowfish_data.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Blowfish\data\blowfish_data.h">
-      <SubType>compile</SubType>
-    </Compile>
+    <Folder Include="data" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

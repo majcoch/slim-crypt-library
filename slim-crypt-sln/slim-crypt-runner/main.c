@@ -7,11 +7,11 @@
 
 #include <avr/io.h>
 
-#include "SHA1/sha1.h"
-#include "AES/aes.h"
-#include "DES/des.h"
-#include "TEA/tea.h"
-#include "Blowfish/blowfish.h"
+#include "sha1/sha1.h"
+#include "aes/aes.h"
+#include "des/des.h"
+#include "tea/tea.h"
+#include "blowfish/blowfish.h"
 
 int main(void) {
    

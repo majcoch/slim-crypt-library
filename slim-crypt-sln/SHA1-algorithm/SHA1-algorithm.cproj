@@ -110,22 +110,25 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="SHA1" />
-    <Folder Include="SHA1\data" />
+    <Compile Include="..\..\src\sha1\data\sha1_data.c">
+      <SubType>compile</SubType>
+      <Link>data\sha1_data.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\sha1\data\sha1_data.h">
+      <SubType>compile</SubType>
+      <Link>data\sha1_data.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\sha1\sha1.c">
+      <SubType>compile</SubType>
+      <Link>sha1.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\sha1\sha1.h">
+      <SubType>compile</SubType>
+      <Link>sha1.h</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SHA1\data\sha1_data.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="SHA1\data\sha1_data.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="SHA1\sha1.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="SHA1\sha1.h">
-      <SubType>compile</SubType>
-    </Compile>
+    <Folder Include="data" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

@@ -110,14 +110,13 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="TEA" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="TEA\tea.c">
+    <Compile Include="..\..\src\tea\tea.c">
       <SubType>compile</SubType>
+      <Link>tea.c</Link>
     </Compile>
-    <Compile Include="TEA\tea.h">
+    <Compile Include="..\..\src\tea\tea.h">
       <SubType>compile</SubType>
+      <Link>tea.h</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
