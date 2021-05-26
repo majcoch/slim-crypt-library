@@ -9,7 +9,15 @@
 #ifndef BLOWFISH_H_
 #define BLOWFISH_H_
 
-#include "impl/enc/blowfish_enc.h"
-#include "impl/dec/blowfish_dec.h"
+#include <stdint.h>
+#include <stddef.h>
+
+uint64_t blowfish_encrypt_block(uint64_t block);
+
+void blowfish_encrypt(uint8_t* data, const size_t len);
+
+uint64_t blowfish_decrypt_block(uint64_t block);
+
+void blowfish_decrypt(uint8_t* data, const size_t len);
 
 #endif /* BLOWFISH_H_ */

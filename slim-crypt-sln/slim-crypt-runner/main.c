@@ -9,9 +9,9 @@
 
 //#include "SHA1/sha1.h"
 #include "AES/aes.h"
-//#include "DES/des.h"
+#include "DES/des.h"
 //#include "TEA/tea.h"
-//#include "Blowfish/blowfish.h"
+#include "Blowfish/blowfish.h"
 
 int main(void) {
    
@@ -28,10 +28,10 @@ int main(void) {
 	aes_128_decrypt(&aes, message, 32);
 	
 	/* DES encrypting and decrypting example */
-	//des_context_t des = {0xAABB09182736CCDD, {0}};
-	//des_init(&des);
-	//des_encrypt(&des, message, 8);
-	//des_decrypt(&des, message, 8);
+	des_context_t des = {0xAABB09182736CCDD, {0}};
+	des_init(&des);
+	des_encrypt(&des, message, 8);
+	des_decrypt(&des, message, 8);
 	
 	/* TEA encrypting and decrypting example */
 	//tea_context_t tea = { {0x12, 0x65, 0x22, 0x55} };
@@ -39,8 +39,8 @@ int main(void) {
 	//tea_decrypt(&tea, message, 8);
 	
 	/* Blowfish encrypting and decrypting example */
-	//blowfish_encrypt(message, 8);
-	//blowfish_decrypt(message, 8);
+	blowfish_encrypt(message, 8);
+	blowfish_decrypt(message, 8);
 	
     while (1) {}
 }

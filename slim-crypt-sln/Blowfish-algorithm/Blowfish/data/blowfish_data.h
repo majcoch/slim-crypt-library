@@ -10,10 +10,9 @@
 #define BLOWFISH_DATA_H_
 
 #include <stdint.h>
-#include <avr/pgmspace.h>
 
-extern const uint32_t p_box[18];
+extern const uint32_t blowfish_p_box[18];
 
-extern const uint32_t s_box[4][256];
+extern const uint32_t blowfish_s_box[4][256];
 
 #endif /* BLOWFISH_DATA_H_ */

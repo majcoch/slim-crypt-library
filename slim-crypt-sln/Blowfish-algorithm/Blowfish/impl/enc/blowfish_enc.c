@@ -14,13 +14,13 @@ uint64_t blowfish_encrypt_block(uint64_t block) {
 	uint32_t R = (uint32_t)(block);
 	
     for (uint8_t i = 0; i < 16; i += 2) {
-	    L ^= p_box[i];
+	    L ^= blowfish_p_box[i];
 	    R ^= f(L);
-	    R ^= p_box[i + 1];
+	    R ^= blowfish_p_box[i + 1];
 	    L ^= f(R);
     }
-    L ^= p_box[16];
-    R ^= p_box[17];
+    L ^= blowfish_p_box[16];
+    R ^= blowfish_p_box[17];
 
     uint32_t tmp = L;
     L = R;
