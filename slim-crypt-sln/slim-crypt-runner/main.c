@@ -6,16 +6,24 @@
  */ 
 
 #include <avr/io.h>
-#include "AES/aes.h"
+//#include "AES/aes.h"
+#include "DES/des.h"
 
 int main(void) {
-    /* AES encrypting and decrypting example */
+   
 	uint8_t message[] = "This is a message we will encrypt with AES!";
-	aes_128_context_t aes = { { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 }, { 0 } };
-
-	aes_init(&aes);
-	aes_128_encrypt(&aes, message, 32);
-	aes_128_decrypt(&aes, message, 32);
+	
+	 /* AES encrypting and decrypting example */
+	//aes_128_context_t aes = { { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 }, { 0 } };
+	//aes_init(&aes);
+	//aes_128_encrypt(&aes, message, 32);
+	//aes_128_decrypt(&aes, message, 32);
+	
+	 /* DES encrypting and decrypting example */
+	des_context_t des = {0xAABB09182736CCDD, {0}};
+	des_init(&des);
+	des_encrypt(&des, message, 8);
+	des_decrypt(&des, message, 8);
 	
     while (1) {}
 }
