@@ -7,6 +7,7 @@
 #include "des_init.h"
 
 #include "../../data/des_data.h"
+#include "../comm/des_common.h"
 
 #define KEY_LOWER_HALF(x) (x >> 28)
 #define KEY_UPPER_HALF(x) (x & 0x0fffffff)
@@ -16,7 +17,7 @@ uint32_t left_rotate_subkey(const uint32_t key, const uint8_t rotate) {
 	uint32_t tmp_key = key;
 
 	for (uint8_t i = 0; i < rotate; i++) {
-		uint8_t tmp_bit = ((tmp_key & (1 << 27)) >> 27);
+		uint8_t tmp_bit = ((tmp_key & ((uint32_t)1 << 27)) >> 27);
 		result = (((tmp_key << 1)) | tmp_bit) & 0x0FFFFFFF;
 		tmp_key = result;
 	}
