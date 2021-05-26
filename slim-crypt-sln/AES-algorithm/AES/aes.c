@@ -4,8 +4,11 @@
  * Created: 26.05.2021 19:08:52
  *  Author: Micha³ Granda
  */ 
+#ifdef __cplusplus
+extern "C" {
+#endif
+	
 #include "aes.h"
-
 #include <string.h>
 #include "data/aes_data.h"
 
@@ -209,3 +212,7 @@ void aes_128_decrypt(const aes_128_context_t* context, uint8_t* data, const size
 		aes_128_decrypt_block(context, &data[i]);
 	}
 }
+
+#ifdef __cplusplus
+}
+#endif

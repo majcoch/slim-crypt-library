@@ -4,6 +4,10 @@
  * Created: 26.05.2021 16:28:50
  *  Author: Micha³ Granda
  */ 
+#ifdef __cplusplus
+extern "C" {
+#endif
+	
 #include "sha1.h"
 
 #include <string.h>
@@ -118,3 +122,7 @@ void sha1_hash(uint8_t* message, uint64_t len, uint32_t hash[]) {
 
 	sha1_hash_block(words, hash);
 }
+
+#ifdef __cplusplus
+}
+#endif
