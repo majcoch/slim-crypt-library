@@ -4,10 +4,10 @@
  * Created: 26.05.2021 16:28:50
  *  Author: Micha³ Granda
  */ 
-#include "sha1_hash.h"
+#include "sha1.h"
 
 #include <string.h>
-#include "../data/sha1_data.h"
+#include "data/sha1_data.h"
 
 void store_big_endian(uint32_t* dest, uint8_t* src) {
 	*dest |= (uint32_t)(src[0]) << 24;
