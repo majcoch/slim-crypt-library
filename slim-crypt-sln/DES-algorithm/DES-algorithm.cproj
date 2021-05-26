@@ -4,43 +4,32 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>7.0</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
-    <ProjectGuid>dce6c7e3-ee26-4d79-826b-08594b9ad897</ProjectGuid>
+    <ProjectGuid>{91d9c217-2bac-4cbf-99fe-7008b4f8b1a8}</ProjectGuid>
     <avrdevice>ATmega328P</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
-    <OutputType>Executable</OutputType>
+    <OutputType>StaticLibrary</OutputType>
     <Language>C</Language>
-    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
-    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputFileName>lib$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.a</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>slim-crypt-runner</AssemblyName>
-    <Name>slim-crypt-runner</Name>
-    <RootNamespace>slim-crypt-runner</RootNamespace>
+    <AvrGccProjectExtensions>
+    </AvrGccProjectExtensions>
+    <AssemblyName>DES-algorithm</AssemblyName>
+    <Name>DES-algorithm</Name>
+    <RootNamespace>DES-algorithm</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <RamSnippetAddress />
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <OverrideVtorValue />
     <BootSegment>2</BootSegment>
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>0</eraseonlaunchrule>
     <EraseKey />
-    <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
-    <avrtoolserialnumber />
-    <avrdeviceexpectedsignature>0x1E950F</avrdeviceexpectedsignature>
-    <com_atmel_avrdbg_tool_simulator>
-      <ToolOptions xmlns="">
-        <InterfaceProperties>
-        </InterfaceProperties>
-      </ToolOptions>
-      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
-      <ToolNumber xmlns="">
-      </ToolNumber>
-      <ToolName xmlns="">Simulator</ToolName>
-    </com_atmel_avrdbg_tool_simulator>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -99,8 +88,6 @@
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
       <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
-      <Value>../../AES-algorithm</Value>
-      <Value>../../DES-algorithm</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcc.compiler.optimization.level>
@@ -123,21 +110,39 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="main.c">
-      <SubType>compile</SubType>
-    </Compile>
+    <Folder Include="DES" />
+    <Folder Include="DES\data" />
+    <Folder Include="DES\impl" />
+    <Folder Include="DES\impl\dec" />
+    <Folder Include="DES\impl\enc" />
+    <Folder Include="DES\impl\init" />
+    <Folder Include="DES\impl\comm" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AES-algorithm\AES-algorithm.cproj">
-      <Name>AES-algorithm</Name>
-      <Project>{0515b9a3-a9e2-4035-b17f-ce4921c8cd49}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\DES-algorithm\DES-algorithm.cproj">
-      <Name>DES-algorithm</Name>
-      <Project>{91d9c217-2bac-4cbf-99fe-7008b4f8b1a8}</Project>
-      <Private>True</Private>
-    </ProjectReference>
+    <Compile Include="DES\data\des_data.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DES\data\des_data.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DES\des.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DES\impl\comm\des_common.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DES\impl\comm\des_common.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DES\impl\des_context.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DES\impl\init\des_init.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DES\impl\init\des_init.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

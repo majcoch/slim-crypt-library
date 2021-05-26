@@ -7,6 +7,8 @@ Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "slim-crypt-runner", "slim-c
 EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "AES-algorithm", "AES-algorithm\AES-algorithm.cproj", "{0515B9A3-A9E2-4035-B17F-CE4921C8CD49}"
 EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "DES-algorithm", "DES-algorithm\DES-algorithm.cproj", "{91D9C217-2BAC-4CBF-99FE-7008B4F8B1A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -21,6 +23,10 @@ Global
 		{0515B9A3-A9E2-4035-B17F-CE4921C8CD49}.Debug|AVR.Build.0 = Debug|AVR
 		{0515B9A3-A9E2-4035-B17F-CE4921C8CD49}.Release|AVR.ActiveCfg = Release|AVR
 		{0515B9A3-A9E2-4035-B17F-CE4921C8CD49}.Release|AVR.Build.0 = Release|AVR
+		{91D9C217-2BAC-4CBF-99FE-7008B4F8B1A8}.Debug|AVR.ActiveCfg = Debug|AVR
+		{91D9C217-2BAC-4CBF-99FE-7008B4F8B1A8}.Debug|AVR.Build.0 = Debug|AVR
+		{91D9C217-2BAC-4CBF-99FE-7008B4F8B1A8}.Release|AVR.ActiveCfg = Release|AVR
+		{91D9C217-2BAC-4CBF-99FE-7008B4F8B1A8}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
