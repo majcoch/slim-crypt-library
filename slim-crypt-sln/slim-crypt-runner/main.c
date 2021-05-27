@@ -2,10 +2,13 @@
  * slim-crypt-runner.c
  *
  * Created: 26.04.2021 10:28:00
- * Author : Micha³ Granda
+ * Author : MichaÂ³ Granda
  */ 
 
 #include <avr/io.h>
+#include <stdio.h>
+
+#include "uart/uart.h"
 
 #include "sha1/sha1.h"
 #include "aes/aes.h"
@@ -14,6 +17,8 @@
 #include "blowfish/blowfish.h"
 
 int main(void) {
+   
+   uart_init();
    
 	uint8_t message[] = "This is a message we will encrypt with AES!";
 	
@@ -42,5 +47,8 @@ int main(void) {
 	blowfish_encrypt(message, 8);
 	blowfish_decrypt(message, 8);
 	
-    while (1) {}
+    while (1) {
+		uint8_t byte = uart_read_byte();
+		uart_write_byte(byte);	
+    }
 }
