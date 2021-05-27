@@ -16,6 +16,12 @@ extern "C" {
 #include <stdint.h>
 #include <stddef.h>
 
+#ifndef __AVR__
+
+void blowfish_init(uint32_t* key, uint8_t key_len);
+
+#endif // !__AVR__
+
 uint64_t blowfish_encrypt_block(uint64_t block);
 
 void blowfish_encrypt(uint8_t* data, const size_t len);

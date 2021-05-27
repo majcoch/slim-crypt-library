@@ -7,6 +7,9 @@
 #include "blowfish.h"
 #include "data/blowfish_data.h"
 
+#define GET_L(x) (uint32_t)(x >> 32)
+#define GET_R(x) ((uint32_t)x)
+
 uint32_t blowfish_f(uint32_t x) {
 	uint32_t h = blowfish_s_box[0][x >> 24] + blowfish_s_box[1][x >> 16 & 0xff];
 	return (h ^ blowfish_s_box[2][x >> 8 & 0xff]) + blowfish_s_box[3][x & 0xff];
@@ -28,6 +31,30 @@ void blowfish_destroy_block(uint8_t* data, const uint64_t* block) {
 		shift -= 8;
 	}
 }
+
+#ifndef __AVR__
+
+void blowfish_init(uint32_t* key, uint8_t key_len) {
+	for (uint8_t i = 0; i < 18; ++i) {
+		blowfish_p_box[i] ^= key[i % key_len];
+	}
+
+	uint64_t block = 0;
+	for (uint8_t i = 0; i < 18; i += 2) {
+		block = blowfish_encrypt_block(block);
+		blowfish_p_box[i] = GET_L(block);
+		blowfish_p_box[i + 1] = GET_R(block);
+	}
+	for (int i = 0; i < 4; ++i) {
+		for (int j = 0; j < 256; j += 2) {
+			block = blowfish_encrypt_block(block);
+			blowfish_s_box[i][j] = GET_L(block);
+			blowfish_s_box[i][j + 1] = GET_R(block);
+		}
+	}
+}
+
+#endif // ENABLE_INIT
 
 uint64_t blowfish_encrypt_block(uint64_t block) {
 	uint32_t L = (block >> 32);

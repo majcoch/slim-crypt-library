@@ -11,8 +11,17 @@
 
 #include <stdint.h>
 
-extern const uint32_t blowfish_p_box[18];
+#ifdef __AVR__
+	#include <avr/pgmspace.h>
+	#define FLASH_MEM PROGMEM
+	#define MODIFY_ARR const
+#else
+	#define FLASH_MEM
+	#define MODIFY_ARR
+#endif // __AVR__
 
-extern const uint32_t blowfish_s_box[4][256];
+extern MODIFY_ARR uint32_t blowfish_p_box[18];
+
+extern MODIFY_ARR uint32_t blowfish_s_box[4][256];
 
 #endif /* BLOWFISH_DATA_H_ */
