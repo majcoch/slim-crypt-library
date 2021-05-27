@@ -102,7 +102,6 @@
       <Value>../../../src</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
-  <avrgcc.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcc.compiler.optimization.level>
   <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
   <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
   <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
@@ -127,6 +126,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\cycle-measure\cycle-measure.cproj">
+      <Name>cycle-measure</Name>
+      <Project>{fe6c231c-ccbc-4703-a57d-a8fc298202b9}</Project>
     <ProjectReference Include="..\AES-algorithm\AES-algorithm.cproj">
       <Name>AES-algorithm</Name>
       <Project>{0515b9a3-a9e2-4035-b17f-ce4921c8cd49}</Project>
