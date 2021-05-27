@@ -129,6 +129,8 @@
     <ProjectReference Include="..\cycle-measure\cycle-measure.cproj">
       <Name>cycle-measure</Name>
       <Project>{fe6c231c-ccbc-4703-a57d-a8fc298202b9}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\AES-algorithm\AES-algorithm.cproj">
       <Name>AES-algorithm</Name>
       <Project>{0515b9a3-a9e2-4035-b17f-ce4921c8cd49}</Project>

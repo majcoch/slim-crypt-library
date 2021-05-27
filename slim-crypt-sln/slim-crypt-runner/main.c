@@ -7,6 +7,8 @@
 
 #include <avr/io.h>
 
+#include "measure/measure.h"
+
 #include "sha1/sha1.h"
 #include "aes/aes.h"
 #include "des/des.h"
