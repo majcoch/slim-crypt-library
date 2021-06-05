@@ -27,6 +27,7 @@ TIMER1_OVF_vect:
 
 /* Start timer 1 */
 cycle_count_start:
+	CLR R18
 	SBR R18, (1<<TOIE1)		// Enable interupt on overflow
 	STS TIMSK1, R18
 	CLR R18
@@ -40,6 +41,6 @@ cycle_count_stop:
 	STS TIMSK1, R1			// Disable interupt
 	LDS R18, TCNT1L			// Store current counter value
 	LDS R19, TCNT1H
-	STS reminder+0, R18
-	STS reminder+1, R19 
+	STS reminder + 0, R18
+	STS reminder + 1, R19 
 	RET

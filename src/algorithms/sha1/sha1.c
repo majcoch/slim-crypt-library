@@ -9,6 +9,14 @@
 #include <string.h>
 #include "data/sha1_data.h"
 
+#ifdef __AVR__
+	#include <avr/pgmspace.h>
+	#define FLASH_ACCESS(x) pgm_read_byte(&(x))
+#else
+	#define FLASH_ACCESS(x) (x)
+#endif // __AVR__
+
+
 void store_big_endian(uint32_t* dest, uint8_t* src) {
 	*dest |= (uint32_t)(src[0]) << 24;
 	*dest |= (uint32_t)(src[1]) << 16;
@@ -73,11 +81,11 @@ void sha1_hash_block(uint32_t* block, uint32_t* current_hash) {
 
 void sha1_hash(uint8_t* message, uint64_t len, uint32_t hash[]) {
 	// Initialize hash value
-	hash[0] = sha1_h[0];
-	hash[1] = sha1_h[1];
-	hash[2] = sha1_h[2];
-	hash[3] = sha1_h[3];
-	hash[4] = sha1_h[4];
+	hash[0] = FLASH_ACCESS(sha1_h[0]);
+	hash[1] = FLASH_ACCESS(sha1_h[1]);
+	hash[2] = FLASH_ACCESS(sha1_h[2]);
+	hash[3] = FLASH_ACCESS(sha1_h[3]);
+	hash[4] = FLASH_ACCESS(sha1_h[4]);
 
 	// Calculate number of blocks to be processed
 	uint64_t bits_total = len + 64 + 1;

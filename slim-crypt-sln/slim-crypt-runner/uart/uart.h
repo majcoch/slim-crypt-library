@@ -11,11 +11,16 @@
 
 #include <avr/io.h>
 #include <stdint.h>
+#include <stddef.h>
 
 #define UART_BAUD 19200
 
 void uart_init(void);
-uint8_t uart_read_byte(void);
-void uart_write_byte(uint8_t byte);
+
+void uart_read_byte(uint8_t* byte);
+void uart_write_byte(const uint8_t byte);
+
+void uart_read(uint8_t* buff, const size_t len);
+void uart_write(const uint8_t* buff, const size_t len);
 
 #endif /* UART_H_ */

@@ -6,51 +6,54 @@
  */ 
 
 #include <avr/io.h>
-#include <stdio.h>
+#include <avr/interrupt.h>
 
 #include "uart/uart.h"
+#include "protocol/protocol.h"
+#include "evaluation/evaluation.h"
 
-#include "measure/measure.h"
+// Array with evaluation functions
+uint32_t (*eval[5][2])(uint8_t*, uint16_t) = {
+	{sha1_hash_eval, NULL},
+	{aes_enc_eval, aes_dec_eval},
+	{des_enc_eval, des_dec_eval},
+	{tea_enc_eval, tea_dec_eval},	
+	{blowfish_enc_eval, blowfish_dec_eval}
+};
 
-#include "sha1/sha1.h"
-#include "aes/aes.h"
-#include "des/des.h"
-#include "tea/tea.h"
-#include "blowfish/blowfish.h"
+// Communication protocol messages
+data_message_t data_msg = { 0 };
+request_message_t req_msg	= { 0 };
+result_message_t res_msg = { 0 };
 
 int main(void) {
-   
-   uart_init();
-   
-	uint8_t message[] = "This is a message we will encrypt with AES!";
+	// Hardware initialization
+	sei(); // Enable interrupts
+	uart_init();
 	
-	/* SH-1 hash example */
-	uint32_t hash[5] = {0};
-	sha1_hash(message, 32, hash);
-	
-	/* AES encrypting and decrypting example */
-	aes_128_context_t aes = { { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 }, { 0 } };
+	// Encryption algorithms initialization
 	aes_128_init(&aes);
-	aes_128_encrypt(&aes, message, 32);
-	aes_128_decrypt(&aes, message, 32);
-	
-	/* DES encrypting and decrypting example */
-	des_context_t des = {0xAABB09182736CCDD, {0}};
 	des_init(&des);
-	des_encrypt(&des, message, 8);
-	des_decrypt(&des, message, 8);
 	
-	/* TEA encrypting and decrypting example */
-	tea_context_t tea = { {0x12, 0x65, 0x22, 0x55} };
-	tea_encrypt(&tea, message, 8);
-	tea_decrypt(&tea, message, 8);
-	
-	/* Blowfish encrypting and decrypting example */
-	blowfish_encrypt(message, 8);
-	blowfish_decrypt(message, 8);
-	
-    while (1) {
-		uint8_t byte = uart_read_byte();
-		uart_write_byte(byte);	
-    }
+	// Evaluation loop
+	while (1) {
+		message_id id = wait_message();
+		switch (id) {
+			case MSG_1:
+				get_message(&data_msg, MSG_1);
+			break;
+			
+			case MSG_2:
+				get_message(&req_msg, MSG_2);
+				// Run evaluation of selected algorithm
+				res_msg.cycle_count = eval[req_msg.alg - 1][req_msg.oper - 1](data_msg.data_buff, data_msg.data_len);
+				// Send result data
+				send_message(&data_msg, MSG_1);
+				// Send cycle count measurement
+				send_message(&res_msg, MSG_3);
+			break;
+		}
+	}
 }
+
+

@@ -15,8 +15,6 @@ Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "TEA-algorithm", "TEA-algori
 EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Blowfish-algorithm", "Blowfish-algorithm\Blowfish-algorithm.cproj", "{13AD1B9F-1ED8-4C49-9156-330F9A9FA91B}"
 EndProject
-Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "SHA1-algorithm", "SHA1-algorithm\SHA1-algorithm.cproj", "{1439DE21-DF46-4BF1-BFD9-3A798CFC2A09}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -47,10 +45,6 @@ Global
 		{13AD1B9F-1ED8-4C49-9156-330F9A9FA91B}.Debug|AVR.Build.0 = Debug|AVR
 		{13AD1B9F-1ED8-4C49-9156-330F9A9FA91B}.Release|AVR.ActiveCfg = Release|AVR
 		{13AD1B9F-1ED8-4C49-9156-330F9A9FA91B}.Release|AVR.Build.0 = Release|AVR
-		{1439DE21-DF46-4BF1-BFD9-3A798CFC2A09}.Debug|AVR.ActiveCfg = Debug|AVR
-		{1439DE21-DF46-4BF1-BFD9-3A798CFC2A09}.Debug|AVR.Build.0 = Debug|AVR
-		{1439DE21-DF46-4BF1-BFD9-3A798CFC2A09}.Release|AVR.ActiveCfg = Release|AVR
-		{1439DE21-DF46-4BF1-BFD9-3A798CFC2A09}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

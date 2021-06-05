@@ -110,25 +110,25 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\src\des\data\des_data.c">
+    <Folder Include="data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\src\algorithms\des\data\des_data.c">
       <SubType>compile</SubType>
       <Link>data\des_data.c</Link>
     </Compile>
-    <Compile Include="..\..\src\des\data\des_data.h">
+    <Compile Include="..\..\src\algorithms\des\data\des_data.h">
       <SubType>compile</SubType>
       <Link>data\des_data.h</Link>
     </Compile>
-    <Compile Include="..\..\src\des\des.c">
+    <Compile Include="..\..\src\algorithms\des\des.c">
       <SubType>compile</SubType>
       <Link>des.c</Link>
     </Compile>
-    <Compile Include="..\..\src\des\des.h">
+    <Compile Include="..\..\src\algorithms\des\des.h">
       <SubType>compile</SubType>
       <Link>des.h</Link>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="data" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

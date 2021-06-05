@@ -84,7 +84,6 @@
   <avrgcc.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
-      <Value>libprintf_min</Value>
     </ListValues>
   </avrgcc.linker.libraries.Libraries>
   <avrgcc.assembler.general.IncludePaths>
@@ -118,6 +117,7 @@
       <Value>../../../src</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
+  <avrgcc.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcc.compiler.optimization.level>
   <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
   <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
   <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
@@ -125,7 +125,6 @@
   <avrgcc.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
-      <Value>libprintf_min</Value>
     </ListValues>
   </avrgcc.linker.libraries.Libraries>
   <avrgcc.assembler.general.IncludePaths>
@@ -138,7 +137,47 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\src\config\enc_config.c">
+      <SubType>compile</SubType>
+      <Link>evaluation\config\enc_config.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\config\enc_config.h">
+      <SubType>compile</SubType>
+      <Link>evaluation\config\enc_config.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\messages\data_message.h">
+      <SubType>compile</SubType>
+      <Link>protocol\messages\data_message.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\messages\message.c">
+      <SubType>compile</SubType>
+      <Link>protocol\messages\message.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\messages\message.h">
+      <SubType>compile</SubType>
+      <Link>protocol\messages\message.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\messages\request_message.h">
+      <SubType>compile</SubType>
+      <Link>protocol\messages\request_message.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\messages\result_message.h">
+      <SubType>compile</SubType>
+      <Link>protocol\messages\result_message.h</Link>
+    </Compile>
+    <Compile Include="evaluation\evaluation.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="evaluation\evaluation.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="protocol\protocol.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="protocol\protocol.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="uart\uart.c">
@@ -149,6 +188,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="evaluation" />
+    <Folder Include="evaluation\config" />
+    <Folder Include="protocol" />
+    <Folder Include="protocol\messages" />
     <Folder Include="uart" />
   </ItemGroup>
   <ItemGroup>
@@ -170,11 +213,6 @@
     <ProjectReference Include="..\DES-algorithm\DES-algorithm.cproj">
       <Name>DES-algorithm</Name>
       <Project>{91d9c217-2bac-4cbf-99fe-7008b4f8b1a8}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\SHA1-algorithm\SHA1-algorithm.cproj">
-      <Name>SHA1-algorithm</Name>
-      <Project>{1439de21-df46-4bf1-bfd9-3a798cfc2a09}</Project>
       <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\TEA-algorithm\TEA-algorithm.cproj">

@@ -7,12 +7,19 @@
 #include "blowfish.h"
 #include "data/blowfish_data.h"
 
+#ifdef __AVR__
+	#include <avr/pgmspace.h>
+	#define FLASH_ACCESS(x) pgm_read_dword(&(x))
+#else
+	#define FLASH_ACCESS(x) (x)
+#endif // __AVR__
+
 #define GET_L(x) (uint32_t)(x >> 32)
 #define GET_R(x) ((uint32_t)x)
 
 uint32_t blowfish_f(uint32_t x) {
-	uint32_t h = blowfish_s_box[0][x >> 24] + blowfish_s_box[1][x >> 16 & 0xff];
-	return (h ^ blowfish_s_box[2][x >> 8 & 0xff]) + blowfish_s_box[3][x & 0xff];
+	uint32_t h = FLASH_ACCESS(blowfish_s_box[0][x >> 24]) + FLASH_ACCESS(blowfish_s_box[1][x >> 16 & 0xff]);
+	return (h ^ FLASH_ACCESS(blowfish_s_box[2][x >> 8 & 0xff])) + FLASH_ACCESS(blowfish_s_box[3][x & 0xff]);
 }
 
 void blowfish_create_block(const uint8_t* data, uint64_t* block) {
@@ -61,13 +68,13 @@ uint64_t blowfish_encrypt_block(uint64_t block) {
 	uint32_t R = (uint32_t)(block);
 	
 	for (uint8_t i = 0; i < 16; i += 2) {
-		L ^= blowfish_p_box[i];
+		L ^= FLASH_ACCESS(blowfish_p_box[i]);
 		R ^= blowfish_f(L);
-		R ^= blowfish_p_box[i + 1];
+		R ^= FLASH_ACCESS(blowfish_p_box[i + 1]);
 		L ^= blowfish_f(R);
 	}
-	L ^= blowfish_p_box[16];
-	R ^= blowfish_p_box[17];
+	L ^= FLASH_ACCESS(blowfish_p_box[16]);
+	R ^= FLASH_ACCESS(blowfish_p_box[17]);
 
 	uint32_t tmp = L;
 	L = R;
@@ -90,13 +97,13 @@ uint64_t blowfish_decrypt_block(uint64_t block) {
 	uint32_t R = (uint32_t)(block);
 	
 	for (int8_t i = 16; i > 0; i -= 2) {
-		L ^= blowfish_p_box[i + 1];
+		L ^= FLASH_ACCESS(blowfish_p_box[i + 1]);
 		R ^= blowfish_f(L);
-		R ^= blowfish_p_box[i];
+		R ^= FLASH_ACCESS(blowfish_p_box[i]);
 		L ^= blowfish_f(R);
 	}
-	L ^= blowfish_p_box[1];
-	R ^= blowfish_p_box[0];
+	L ^= FLASH_ACCESS(blowfish_p_box[1]);
+	R ^= FLASH_ACCESS(blowfish_p_box[0]);
 
 	uint32_t tmp = L;
 	L = R;

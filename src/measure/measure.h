@@ -24,8 +24,8 @@
 										
 #define TIMER_STOP_LAT		6			// Number of cycles it takes to shut down counter
 										// starting from calling cycle_count_stop routine
-
-void cycle_count_init(void);
+										
+void cycle_count_reset(void);
 extern void cycle_count_start(void);
 extern void cycle_count_stop(void);
 uint32_t cycle_count_get();
