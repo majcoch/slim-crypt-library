@@ -19,9 +19,15 @@
 /* Timer 1 overflow interupt service routine */
 TIMER1_OVF_vect:
 	PUSH R16				// 2 cycles
+	PUSH R17				// 2 cycles
+	LDS R17, SREG			// 2 cycles
+
 	LDS R16, overflows		// 2 cycles
 	INC R16					// 1 cycle
 	STS overflows, R16		// 2 cycles
+
+	STS SREG, R17			// 2 cycles
+	POP R17					// 2 cycles
 	POP R16					// 2 cycles
 	RETI					// 4 cycles
 

@@ -14,7 +14,7 @@ void uart_init(void) {
 	UBRR0L = (uint8_t)(MYUBRR);
 	UBRR0H = (uint8_t)(MYUBRR>>8);
 	UCSR0B = (1<<RXEN0)|(1<<TXEN0);
-	//UCSR0C |= (1<<UPM01);
+	UCSR0C |= (1<<UPM01);
 }
 
 void uart_read_byte(uint8_t* byte) {
@@ -33,7 +33,7 @@ void uart_read(uint8_t* buff, const size_t len) {
 	}
 }
 
-void uart_write(const uint8_t* buff, const size_t len) {
+void uart_write(uint8_t* buff, const size_t len) {
 	for (size_t i = 0; i < len; i++) {
 		uart_write_byte(buff[i]);
 	}

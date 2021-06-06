@@ -15,6 +15,8 @@ extern "C" {
 
 #include <stdint.h>
 
+#define RESP_MSG_SIZE (sizeof(result_message_t))
+
 typedef struct {
 	uint32_t cycle_count;
 } result_message_t;

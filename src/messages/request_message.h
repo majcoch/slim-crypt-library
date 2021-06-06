@@ -15,6 +15,8 @@ extern "C" {
 
 #include <stdint.h>
 
+#define REQU_MSG_SIZE (sizeof(request_message_t))
+
 typedef enum {
 	SHA1 = 0x01,
 	AES = 0x02,

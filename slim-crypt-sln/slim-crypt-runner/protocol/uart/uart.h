@@ -13,7 +13,7 @@
 #include <stdint.h>
 #include <stddef.h>
 
-#define UART_BAUD 19200
+#define UART_BAUD 9600
 
 void uart_init(void);
 
@@ -21,6 +21,6 @@ void uart_read_byte(uint8_t* byte);
 void uart_write_byte(const uint8_t byte);
 
 void uart_read(uint8_t* buff, const size_t len);
-void uart_write(const uint8_t* buff, const size_t len);
+void uart_write(uint8_t* buff, const size_t len);
 
 #endif /* UART_H_ */

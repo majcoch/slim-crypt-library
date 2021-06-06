@@ -15,9 +15,12 @@ extern "C" {
 
 #include <stdint.h>
 
+#define BUFFER_SIZE 512
+#define DATA_MSG_SIZE(x) (sizeof(uint16_t) + (x))
+
 typedef struct {
 	uint16_t data_len;
-	uint8_t data_buff[32];
+	uint8_t data_buff[BUFFER_SIZE];
 } data_message_t;
 
 #ifdef __cplusplus
