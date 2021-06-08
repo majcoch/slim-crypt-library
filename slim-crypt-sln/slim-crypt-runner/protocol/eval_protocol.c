@@ -7,8 +7,13 @@
 #include "eval_protocol.h"
 
 // Callbacks
-void (*serialize_msg[])(void(*)(uint8_t*, const size_t), uint16_t) = {
-	 serialize_data_msg, serialize_requ_msg, serialize_resp_msg
+void (*serialize_msg[])(void(*)(uint8_t*, const size_t), const uint16_t) = {
+	serialize_execute_algorithm_cmd,
+	serialize_send_data_cmd,
+	serialize_send_count_cmd,
+	serialize_execution_status,
+	serialize_count_result,
+	serialize_data_transfer
 };
 
 message_id await_message() {

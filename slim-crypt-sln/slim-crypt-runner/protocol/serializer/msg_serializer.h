@@ -12,19 +12,27 @@
 #include <stdint.h>
 #include <stddef.h>
 
-#include "messages/data_message.h"
-#include "messages/result_message.h"
-#include "messages/request_message.h"
+#include "messages/commands.h"
+#include "messages/responses.h"
+#include "messages/data_transfers.h"
 
-// Static messages declarations
-extern data_message_t data_msg;
-extern request_message_t req_msg;
-extern result_message_t res_msg;
+extern execute_algorithm_cmd_m execute_algorithm_cmd;
+extern send_data_cmd_m send_data_command;
+extern send_count_cmd_m send_count_command;
+extern execution_status_m execution_status;
+extern count_result_m count_result;
+extern data_transfer_m data_transfer;
 
-void serialize_data_msg(void(*store)(uint8_t*, const size_t), uint16_t len);
+void serialize_execute_algorithm_cmd(void(*store)(uint8_t*, const size_t), const uint16_t len);
 
-void serialize_requ_msg(void(*store)(uint8_t*, const size_t), uint16_t len);
+void serialize_send_data_cmd(void(*store)(uint8_t*, const size_t), const uint16_t len);
 
-void serialize_resp_msg(void(*store)(uint8_t*, const size_t), uint16_t len);
+void serialize_send_count_cmd(void(*store)(uint8_t*, const size_t), const uint16_t len);
+
+void serialize_execution_status(void(*store)(uint8_t*, const size_t), const uint16_t len);
+
+void serialize_count_result(void(*store)(uint8_t*, const size_t), const uint16_t len);
+
+void serialize_data_transfer(void(*store)(uint8_t*, const size_t), const uint16_t len);
 
 #endif /* MSG_SERIALIZER_H_ */

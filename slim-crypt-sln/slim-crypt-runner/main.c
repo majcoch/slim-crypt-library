@@ -30,15 +30,30 @@ int main(void) {
 	des_init(&des);
 	
 	while (1) {
-		message_id id = await_message();
-		switch ( id ) {
-		case REQU_MSG:
-			//// Run evaluation of selected algorithm
-			res_msg.cycle_count = eval[req_msg.alg - 1][req_msg.oper - 1](data_msg.data_buff, data_msg.data_len);			
-			send_message(DATA_MSG, DATA_MSG_SIZE(data_msg.data_len));
-			// Send cycle count measurement
-			send_message(RESP_MSG, RESP_MSG_SIZE);
-		break;
+		message_id msg_id = await_message();
+		switch (msg_id) {
+			case EXEC_ALGO_CMD:
+				execution_status.status = 0;
+				
+				count_result.count = 
+				eval[execute_algorithm_cmd.algorithm_code - 1][execute_algorithm_cmd.operation_code - 1]
+				(data_transfer.data_buff, data_transfer.data_len);
+				
+				execution_status.status = 1;
+				send_message(EXEC_STATUS, EXEC_STATUS_SIZE);
+				break;
+			
+			case SEND_DATA_CMD:
+				send_message(DATA_TRANSFER, DATA_TRANSFER_SIZE(data_transfer.data_len));
+				break;
+		
+			case SEND_CNT_CMD:
+				send_message(COUNT_RESULT, COUNT_RESULT_SIZE);
+				break;
+			
+			default:
+				// Invalid message received - do nothing
+				break;
 		}
 	}
 }

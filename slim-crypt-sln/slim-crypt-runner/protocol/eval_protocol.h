@@ -10,17 +10,11 @@
 #define EVAL_PROTOCOL_H_
 
 #include "uart/uart.h"
+#include "messages/message_id.h"
 #include "serializer/msg_serializer.h"
 
 // Callbacks table to process incoming messages
-extern void (*serialize_msg[])(void(*)(uint8_t*, const size_t), uint16_t);
-
-typedef enum {
-	INVALID	 = 0x00,
-	DATA_MSG = 0x01,
-	REQU_MSG = 0x02,
-	RESP_MSG = 0x03
-} message_id;
+extern void (*serialize_msg[])(void(*)(uint8_t*, const size_t), const uint16_t);
 
 // Protocol functions
 message_id await_message(void);

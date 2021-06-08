@@ -144,17 +144,21 @@
       <SubType>compile</SubType>
       <Link>evaluation\config\enc_config.h</Link>
     </Compile>
-    <Compile Include="..\..\src\messages\data_message.h">
+    <Compile Include="..\..\src\messages\commands.h">
       <SubType>compile</SubType>
-      <Link>protocol\messages\data_message.h</Link>
+      <Link>protocol\messages\commands.h</Link>
     </Compile>
-    <Compile Include="..\..\src\messages\request_message.h">
+    <Compile Include="..\..\src\messages\data_transfers.h">
       <SubType>compile</SubType>
-      <Link>protocol\messages\request_message.h</Link>
+      <Link>protocol\messages\data_transfers.h</Link>
     </Compile>
-    <Compile Include="..\..\src\messages\result_message.h">
+    <Compile Include="..\..\src\messages\message_id.h">
       <SubType>compile</SubType>
-      <Link>protocol\messages\result_message.h</Link>
+      <Link>protocol\messages\message_id.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\messages\responses.h">
+      <SubType>compile</SubType>
+      <Link>protocol\messages\responses.h</Link>
     </Compile>
     <Compile Include="evaluation\evaluation.c">
       <SubType>compile</SubType>
