@@ -110,11 +110,11 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\src\tea\tea.c">
+    <Compile Include="..\..\src\algorithms\tea\tea.c">
       <SubType>compile</SubType>
       <Link>tea.c</Link>
     </Compile>
-    <Compile Include="..\..\src\tea\tea.h">
+    <Compile Include="..\..\src\algorithms\tea\tea.h">
       <SubType>compile</SubType>
       <Link>tea.h</Link>
     </Compile>

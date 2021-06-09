@@ -9,6 +9,13 @@
 #include <string.h>
 #include "data/aes_data.h"
 
+#ifdef __AVR__
+	#include <avr/pgmspace.h>
+	#define FLASH_ACCESS(x) pgm_read_byte(&(x))
+#else
+	#define FLASH_ACCESS(x) (x)
+#endif // __AVR__
+
 #define GAL_MUL_2(x)  ((((x) << 1) ^ (0x1B & (((x) >> 7) * 0xFF))) & 0xFF)
 
 void aes_add_round_key(uint8_t* state, const uint8_t* key) {
@@ -38,12 +45,12 @@ void aes_key_expand_core(uint8_t* key, const uint8_t iteration) {
 	key[3] = tmp_byte;
 
 	// substitute with s_box
-	key[0] = aes_s_box[key[0]];
-	key[1] = aes_s_box[key[1]];
-	key[2] = aes_s_box[key[2]];
-	key[3] = aes_s_box[key[3]];
+	key[0] = FLASH_ACCESS(aes_s_box[key[0]]);
+	key[1] = FLASH_ACCESS(aes_s_box[key[1]]);
+	key[2] = FLASH_ACCESS(aes_s_box[key[2]]);
+	key[3] = FLASH_ACCESS(aes_s_box[key[3]]);
 
-	key[0] ^= aes_rcon[iteration];
+	key[0] ^= FLASH_ACCESS(aes_rcon[iteration]);
 }
 
 void aes_expand_key(const uint8_t* user_key, uint8_t* exp_key) {
@@ -66,7 +73,7 @@ void aes_expand_key(const uint8_t* user_key, uint8_t* exp_key) {
 
 void aes_sub_bytes(uint8_t* state) {
 	for (uint8_t i = 0; i < 16; i++){
-		state[i] = aes_s_box[state[i]];
+		state[i] = FLASH_ACCESS(aes_s_box[state[i]]);
 	}
 }
 
@@ -113,7 +120,7 @@ void aes_mix_columns(uint8_t* state) {
 
 void aes_inv_sub_bytes(uint8_t* state) {
 	for (uint8_t i = 0; i < 16; i++){
-		state[i] = aes_inv_s_box[state[i]];
+		state[i] = FLASH_ACCESS(aes_inv_s_box[state[i]]);
 	}
 }
 

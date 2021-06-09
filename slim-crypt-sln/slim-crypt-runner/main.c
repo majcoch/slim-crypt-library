@@ -6,51 +6,55 @@
  */ 
 
 #include <avr/io.h>
-#include <stdio.h>
+#include <avr/interrupt.h>
 
-#include "uart/uart.h"
+#include "config/enc_config.h"
+#include "protocol/eval_protocol.h"
+#include "evaluation/evaluation.h"
 
-#include "measure/measure.h"
+// Lookup table with evaluation functions
+uint32_t (*eval[5][2])(uint8_t*, uint16_t*) = {
+	{sha1_hash_eval, NULL},
+	{aes_enc_eval, aes_dec_eval},
+	{des_enc_eval, des_dec_eval},
+	{tea_enc_eval, tea_dec_eval},
+	{blowfish_enc_eval, blowfish_dec_eval}
+};
 
-#include "sha1/sha1.h"
-#include "aes/aes.h"
-#include "des/des.h"
-#include "tea/tea.h"
-#include "blowfish/blowfish.h"
-
-int main(void) {
-   
-   uart_init();
-   
-	uint8_t message[] = "This is a message we will encrypt with AES!";
+int main(void) {	
+	// Hardware initialization
+	sei();
+	uart_init();
 	
-	/* SH-1 hash example */
-	uint32_t hash[5] = {0};
-	sha1_hash(message, 32, hash);
-	
-	/* AES encrypting and decrypting example */
-	aes_128_context_t aes = { { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 }, { 0 } };
+	// Encryption algorithms initialization
 	aes_128_init(&aes);
-	aes_128_encrypt(&aes, message, 32);
-	aes_128_decrypt(&aes, message, 32);
-	
-	/* DES encrypting and decrypting example */
-	des_context_t des = {0xAABB09182736CCDD, {0}};
 	des_init(&des);
-	des_encrypt(&des, message, 8);
-	des_decrypt(&des, message, 8);
 	
-	/* TEA encrypting and decrypting example */
-	tea_context_t tea = { {0x12, 0x65, 0x22, 0x55} };
-	tea_encrypt(&tea, message, 8);
-	tea_decrypt(&tea, message, 8);
-	
-	/* Blowfish encrypting and decrypting example */
-	blowfish_encrypt(message, 8);
-	blowfish_decrypt(message, 8);
-	
-    while (1) {
-		uint8_t byte = uart_read_byte();
-		uart_write_byte(byte);	
-    }
+	while (1) {
+		message_id msg_id = await_message();
+		switch (msg_id) {
+			case EXEC_ALGO_CMD:
+				execution_status.status = 0;
+				
+				count_result.count = 
+				eval[execute_algorithm_cmd.algorithm_code - 1][execute_algorithm_cmd.operation_code - 1]
+				(data_transfer.data_buff, &data_transfer.data_len);
+				
+				execution_status.status = 1;
+				send_message(EXEC_STATUS, EXEC_STATUS_SIZE);
+				break;
+			
+			case SEND_DATA_CMD:
+				send_message(DATA_TRANSFER, DATA_TRANSFER_SIZE(data_transfer.data_len));
+				break;
+		
+			case SEND_CNT_CMD:
+				send_message(COUNT_RESULT, COUNT_RESULT_SIZE);
+				break;
+			
+			default:
+				// Invalid message received - do nothing
+				break;
+		}
+	}
 }

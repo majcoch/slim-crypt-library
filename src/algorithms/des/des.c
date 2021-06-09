@@ -8,6 +8,13 @@
 
 #include "data/des_data.h"
 
+#ifdef __AVR__
+	#include <avr/pgmspace.h>
+	#define FLASH_ACCESS(x) pgm_read_byte(&(x))
+#else
+	#define FLASH_ACCESS(x) (x)
+#endif // __AVR__
+
 #define KEY_LOWER_HALF(x) (x >> 28)
 #define KEY_UPPER_HALF(x) (x & 0x0fffffff)
 
@@ -18,8 +25,8 @@ uint64_t des_perform_permutation(const uint64_t data, const uint8_t* tab, const 
 	uint64_t result = 0;
 
 	for (uint8_t i = 0; i < out_bits; i++) {
-		uint64_t mask = ((uint64_t)1 << (in_bits - tab[i]));
-		result |= (((data & mask) >> (in_bits - tab[i])) << (out_bits - i - 1));
+		uint64_t mask = ((uint64_t)1 << (in_bits - FLASH_ACCESS(tab[i])));
+		result |= (((data & mask) >> (in_bits - FLASH_ACCESS(tab[i]))) << (out_bits - i - 1));
 	}
 
 	return result;
@@ -38,7 +45,7 @@ uint64_t des_f(const uint32_t r_block, const uint64_t key) {
 		uint8_t row = ((bit_box >> 4) & 0b000010) | (bit_box & 0b000001);
 		uint8_t column = (bit_box & 0b011110) >> 1;
 
-		uint8_t substitution = des_s_box[i][row][column];
+		uint8_t substitution = FLASH_ACCESS(des_s_box[i][row][column]);
 
 		result |= ((uint64_t)(substitution) << ((7 - i) * 4));
 	}
@@ -83,8 +90,8 @@ void des_generate_keys(const uint64_t key, uint64_t keys[]) {
 	uint32_t d_key = KEY_UPPER_HALF(compressed_key);
 
 	for (uint8_t i = 0; i < 16; i++) {
-		c_key = des_left_rotate_subkey(c_key, des_key_shift[i]);
-		d_key = des_left_rotate_subkey(d_key, des_key_shift[i]);
+		c_key = des_left_rotate_subkey(c_key, FLASH_ACCESS(des_key_shift[i]));
+		d_key = des_left_rotate_subkey(d_key, FLASH_ACCESS(des_key_shift[i]));
 		uint64_t new_key = ((uint64_t)(c_key) << 28) | d_key;
 
 		keys[i] = des_perform_permutation(new_key, des_pc_2, 56, 48);

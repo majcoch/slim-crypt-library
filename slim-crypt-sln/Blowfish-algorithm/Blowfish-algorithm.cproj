@@ -22,10 +22,10 @@
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress />
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue />
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
     <BootSegment>2</BootSegment>
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>0</eraseonlaunchrule>
@@ -110,25 +110,25 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\src\blowfish\blowfish.c">
+    <Folder Include="data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\src\algorithms\blowfish\blowfish.c">
       <SubType>compile</SubType>
       <Link>blowfish.c</Link>
     </Compile>
-    <Compile Include="..\..\src\blowfish\blowfish.h">
+    <Compile Include="..\..\src\algorithms\blowfish\blowfish.h">
       <SubType>compile</SubType>
       <Link>blowfish.h</Link>
     </Compile>
-    <Compile Include="..\..\src\blowfish\data\blowfish_data.c">
+    <Compile Include="..\..\src\algorithms\blowfish\data\blowfish_data.c">
       <SubType>compile</SubType>
       <Link>data\blowfish_data.c</Link>
     </Compile>
-    <Compile Include="..\..\src\blowfish\data\blowfish_data.h">
+    <Compile Include="..\..\src\algorithms\blowfish\data\blowfish_data.h">
       <SubType>compile</SubType>
       <Link>data\blowfish_data.h</Link>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="data" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

@@ -84,7 +84,6 @@
   <avrgcc.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
-      <Value>libprintf_min</Value>
     </ListValues>
   </avrgcc.linker.libraries.Libraries>
   <avrgcc.assembler.general.IncludePaths>
@@ -115,9 +114,11 @@
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
       <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value>
+      <Value>../../cycle-measure</Value>
       <Value>../../../src</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
+  <avrgcc.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcc.compiler.optimization.level>
   <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
   <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
   <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
@@ -125,7 +126,6 @@
   <avrgcc.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
-      <Value>libprintf_min</Value>
     </ListValues>
   </avrgcc.linker.libraries.Libraries>
   <avrgcc.assembler.general.IncludePaths>
@@ -138,18 +138,65 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\src\config\enc_config.c">
+      <SubType>compile</SubType>
+      <Link>evaluation\config\enc_config.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\config\enc_config.h">
+      <SubType>compile</SubType>
+      <Link>evaluation\config\enc_config.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\messages\commands.h">
+      <SubType>compile</SubType>
+      <Link>protocol\messages\commands.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\messages\data_transfers.h">
+      <SubType>compile</SubType>
+      <Link>protocol\messages\data_transfers.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\messages\message_id.h">
+      <SubType>compile</SubType>
+      <Link>protocol\messages\message_id.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\messages\responses.h">
+      <SubType>compile</SubType>
+      <Link>protocol\messages\responses.h</Link>
+    </Compile>
+    <Compile Include="evaluation\evaluation.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="evaluation\evaluation.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="uart\uart.c">
+    <Compile Include="protocol\eval_protocol.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="uart\uart.h">
+    <Compile Include="protocol\eval_protocol.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="protocol\serializer\msg_serializer.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="protocol\serializer\msg_serializer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="protocol\uart\uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="protocol\uart\uart.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="uart" />
+    <Folder Include="evaluation" />
+    <Folder Include="evaluation\config" />
+    <Folder Include="protocol" />
+    <Folder Include="protocol\messages" />
+    <Folder Include="protocol\serializer" />
+    <Folder Include="protocol\uart\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cycle-measure\cycle-measure.cproj">
