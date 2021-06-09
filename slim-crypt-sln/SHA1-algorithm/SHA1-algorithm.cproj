@@ -112,5 +112,19 @@
   <ItemGroup>
     <Folder Include="data" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\src\algorithms\sha1\data\sha1_data.h">
+      <SubType>compile</SubType>
+      <Link>data\sha1_data.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\algorithms\sha1\sha1.c">
+      <SubType>compile</SubType>
+      <Link>sha1.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\algorithms\sha1\sha1.h">
+      <SubType>compile</SubType>
+      <Link>sha1.h</Link>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

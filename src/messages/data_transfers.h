@@ -15,7 +15,7 @@ extern "C" {
 
 #include <stdint.h>
 
-#define BUFFER_SIZE 512
+#define BUFFER_SIZE 520
 
 typedef struct {
 	uint16_t data_len;

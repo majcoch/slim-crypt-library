@@ -17,7 +17,7 @@
 #define TIMER_ISR_RESPONSE	6			// Number of cycles it takes CPU to start
 										// executing ISR code
 										
-#define TIMER_ISR_EXEC		21			// Number of cycles ISR takes to execute
+#define TIMER_ISR_EXEC		36			// Number of cycles ISR takes to execute
 
 #define TIMER_START_LAT		4			// Number of cycles it takes to return from
 										// cycle_count_start routine

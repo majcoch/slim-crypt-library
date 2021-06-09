@@ -8,7 +8,7 @@
 
 #include "measure.h"
 
-volatile uint8_t overflows;
+volatile uint16_t overflows;
 volatile uint16_t reminder;
 
 void cycle_count_reset(void) {

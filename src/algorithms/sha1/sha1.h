@@ -16,7 +16,7 @@ extern "C" {
 #include <stdint.h>
 #include <stddef.h>
 
-void sha1_hash(uint8_t* message, uint64_t len, uint32_t hash[]);
+void sha1_hash(uint8_t* message, const uint64_t len, uint32_t hash[5]);
 
 #ifdef __cplusplus
 }

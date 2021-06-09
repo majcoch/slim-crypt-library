@@ -13,7 +13,7 @@
 extern "C" {
 #endif
 
-//#include "algorithms/sha1/sha1.h"
+#include "algorithms/sha1/sha1.h"
 #include "algorithms/aes/aes.h"
 #include "algorithms/des/des.h"
 #include "algorithms/tea/tea.h"

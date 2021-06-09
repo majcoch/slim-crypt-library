@@ -21,18 +21,7 @@
 #define DATA_UPPER_HALF(x) (uint32_t)(x >> 32)
 #define DATA_LOWER_HALF(x) (uint32_t)(x)
 
-//uint64_t des_perform_permutation(const uint64_t data, const uint8_t* tab, const uint8_t in_bits, const uint8_t out_bits) {
-	//uint64_t result = 0;
-//
-	//for (uint8_t i = 0; i < out_bits; i++) {
-		//uint64_t mask = ((uint64_t)1 << (in_bits - tab[i]));
-		//result |= (((data & mask) >> (in_bits - tab[i])) << (out_bits - i - 1));
-	//}
-//
-	//return result;
-//}
-
-uint64_t des_perform_permutation_flash(const uint64_t data, const uint8_t* tab, const uint8_t in_bits, const uint8_t out_bits) {
+uint64_t des_perform_permutation(const uint64_t data, const uint8_t* tab, const uint8_t in_bits, const uint8_t out_bits) {
 	uint64_t result = 0;
 
 	for (uint8_t i = 0; i < out_bits; i++) {
@@ -45,7 +34,7 @@ uint64_t des_perform_permutation_flash(const uint64_t data, const uint8_t* tab, 
 
 uint64_t des_f(const uint32_t r_block, const uint64_t key) {
 	// Expand and XOR with key
-	uint64_t permutated_block = des_perform_permutation_flash(r_block, des_expand_table, 32, 48);
+	uint64_t permutated_block = des_perform_permutation(r_block, des_expand_table, 32, 48);
 	permutated_block ^= key;
 
 	// Apply s-box
@@ -61,7 +50,7 @@ uint64_t des_f(const uint32_t r_block, const uint64_t key) {
 		result |= ((uint64_t)(substitution) << ((7 - i) * 4));
 	}
 
-	result = des_perform_permutation_flash(result, des_p, 32, 32);
+	result = des_perform_permutation(result, des_p, 32, 32);
 	return result;
 }
 
@@ -96,7 +85,7 @@ uint32_t des_left_rotate_subkey(const uint32_t key, const uint8_t rotate) {
 }
 
 void des_generate_keys(const uint64_t key, uint64_t keys[]) {
-	uint64_t compressed_key = des_perform_permutation_flash(key, des_pc_1, 64, 56);
+	uint64_t compressed_key = des_perform_permutation(key, des_pc_1, 64, 56);
 	uint32_t c_key = KEY_LOWER_HALF(compressed_key);
 	uint32_t d_key = KEY_UPPER_HALF(compressed_key);
 
@@ -105,7 +94,7 @@ void des_generate_keys(const uint64_t key, uint64_t keys[]) {
 		d_key = des_left_rotate_subkey(d_key, FLASH_ACCESS(des_key_shift[i]));
 		uint64_t new_key = ((uint64_t)(c_key) << 28) | d_key;
 
-		keys[i] = des_perform_permutation_flash(new_key, des_pc_2, 56, 48);
+		keys[i] = des_perform_permutation(new_key, des_pc_2, 56, 48);
 	}
 }
 
@@ -115,7 +104,7 @@ void des_init(des_context_t* context) {
 }
 
 uint64_t des_encrypt_block(const des_context_t* context, const uint64_t block) {
-	uint64_t permutated_data = des_perform_permutation_flash(block, des_ip, 64, 64);
+	uint64_t permutated_data = des_perform_permutation(block, des_ip, 64, 64);
 
 	uint32_t l_block = DATA_UPPER_HALF(permutated_data);
 	uint32_t r_block = DATA_LOWER_HALF(permutated_data);
@@ -128,7 +117,7 @@ uint64_t des_encrypt_block(const des_context_t* context, const uint64_t block) {
 
 	// combine R + L
 	uint64_t result = ((uint64_t)(r_block) << 32) | l_block;
-	result = des_perform_permutation_flash(result, des_inv_ip, 64, 64);
+	result = des_perform_permutation(result, des_inv_ip, 64, 64);
 
 	return result;
 }
@@ -143,7 +132,7 @@ void des_encrypt(const des_context_t* context, uint8_t* data, const size_t len) 
 }
 
 uint64_t des_decrypt_block(const des_context_t* context, const uint64_t block) {
-	uint64_t permutated_data = des_perform_permutation_flash(block, des_ip, 64, 64);
+	uint64_t permutated_data = des_perform_permutation(block, des_ip, 64, 64);
 
 	uint32_t l_block = DATA_UPPER_HALF(permutated_data);
 	uint32_t r_block = DATA_LOWER_HALF(permutated_data);
@@ -156,7 +145,7 @@ uint64_t des_decrypt_block(const des_context_t* context, const uint64_t block) {
 
 	// combine R + L
 	uint64_t result = ((uint64_t)(r_block) << 32) | l_block;
-	result = des_perform_permutation_flash(result, des_inv_ip, 64, 64);
+	result = des_perform_permutation(result, des_inv_ip, 64, 64);
 
 	return result;
 }
