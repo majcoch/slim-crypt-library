@@ -6,10 +6,16 @@
  */ 
 #include "enc_config.h"
 
-aes_128_context_t aes = { { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 }, { 0 } };
+aes_128_context_t aes = { 
+	{ 0x24, 0x75, 0x93, 0xA6, 0xB8, 0x45, 0xC6, 0xF4, 0x02, 0xFF, 0x48, 0x39, 0x11, 0xAA, 0x22, 0x15 },
+	{ 0 } 
+};
 
-des_context_t des = { 0xAABB09182736CCDD, { 0 } };
+des_context_t des = { 
+	0xA156C43657F67A88, 
+	{ 0 } 
+};
 
-tea_context_t tea = { {0x12, 0x65, 0x22, 0x55} };
+tea_context_t tea = { {0x8593CC3E, 0x824AC859, 0x4CED5873, 0x65FE7849} };
 
-uint32_t blowfish[] = { 0x01, 0x02 };
+uint32_t blowfish[] = { 0x47C9A45B, 0x88BC3751 };
