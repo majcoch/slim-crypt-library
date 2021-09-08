@@ -14,7 +14,7 @@ SlimCRYPT is not only an implementation of selected encryption algorithms but al
 
 # Project Status
 
-Currently working on implementing a cycle accurate measurements using built-in hardware timers and interupts on ATMega328p.
+Project completed
 
 # Getting Started
 
